@@ -1,0 +1,39 @@
+server:
+  port: 8088
+spring:
+  application:
+      name: auth-server
+  redis:
+      host: localhost
+      port: 6379
+      password: gzw
+#  session:
+#      store-type: redis
+  datasource:
+    url: jdbc:mysql://localhost:3306/gzw_login?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations:
+      - classpath:mapper/*.xml
+  type-aliases-package: com.gzw.auth.domain
+
+eureka:
+  client:
+    service-url.defaultZone: http://eureka-server:gzw@localhost:1001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+  basic:
+    enabled: false
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG

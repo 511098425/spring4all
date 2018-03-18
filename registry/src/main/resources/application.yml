@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 1001
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    healthcheck:
+        enabled: true
+    service-url:
+        defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: false
+security:
+  user:
+    name: eureka-server
+    password: gzw
+  basic:
+    enabled: true

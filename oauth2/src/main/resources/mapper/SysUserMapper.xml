@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzw.auth.mapper.SysUserMapper">
+
+    <select id="getUserByPhone" parameterType="string" resultType="SysUser">
+        SELECT * FROM sysuser WHERE phone=#{phone}
+    </select>
+    <insert id="registUser" parameterType="SysUser">
+        INSERT INTO sysuser(userId, phone, password, role, registerTime,lastLoginTime) values(#{userId}, #{phone},#{password}, #{role},now(),now())
+    </insert>
+
+</mapper>
